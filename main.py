@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 from datetime import datetime
 
+# SET YOUR VINTED USERNAME HERE
+BUYER_NAME = ""
+
 with open("index.html", "r", encoding="utf-8") as file:
     html_content = file.read()
 
@@ -23,7 +26,7 @@ for cell in cells:
         order_purchased = datetime.strptime(order_purchased_span.get_text(strip=True), "%Y-%m-%d %H:%M:%S %z")
         
         day_key = order_purchased.strftime("%Y-%m-%d")
-        daily_values[day_key]["purchased" if buyer == "baranskas" else "sold"] += order_value
+        daily_values[day_key]["purchased" if buyer == BUYER_NAME else "sold"] += order_value
 
 dates = sorted(daily_values.keys())
 sold_values = [daily_values[date]["sold"] for date in dates]
